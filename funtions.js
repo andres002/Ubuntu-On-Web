@@ -14,6 +14,26 @@ function reloj(){
 	document.getElementById("hora").innerHTML = horaFin;
 }
 
+
+function leerUsuarios(){
+	$("#listUsers").load('cargaUsuarios.php');
+}
+
+function openUser($user) {
+	$.ajax({
+		url: 'funcionesdeUsuario.php',
+		data: {accion:'openUser',usuario:$user},
+		type: 'POST',
+		datatype:"html",
+		success: function(data) {
+			//alert(contenido);
+			$('#divUsers').html(data);
+		}
+	});
+}
+
+
+
 function calc (elemento) {
 	var panel = document.getElementById("panel");
 
@@ -76,6 +96,18 @@ function guardarnota(){
 
 }
 
+function guardarUsuario(){
+	var txNotas  = document.getElementById('txNotas').value;
+	if(txNotas != ""){
+		document.getElementById("listNotas").innerHTML = document.getElementById('listNotas').innerHTML+"<li id = 'nota"+ count+"'"+" type='none' onclick='opennote(this.id)' style = 'cursor:pointer; background-color:#FF6E2B;'>"+txNotas+"</li";
+		document.getElementById("txNotas").value="";
+		count++;
+	}
+
+}
+
+
+    
 
 function opennote(id){
 	document.getElementById("txNotas").value = document.getElementById(id).innerHTML;
@@ -112,8 +144,20 @@ function notesAppclose(){
 	$('#notas').fadeOut(500);
 }
 
+function usuariosApp(){
+	$('#usuarios').fadeIn(500);
+}
+
+function usuariosAppclose(){
+	$('#usuarios').fadeOut(500);
+}
+
+
 function datos1(){
 	$('#datos').fadeIn(500);
+	 $('#apagar').dblclick(function() {
+	  $('#datos').fadeOut(500);
+		});
 }
 
 function datos2(){
@@ -124,6 +168,8 @@ function datos2(){
 function closedatos(){
 	$('#andres').fadeOut(500);
 }
+
+
 
 /*$(document).ready(function{
 	$('#notas').draggable();

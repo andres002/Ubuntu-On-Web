@@ -16,7 +16,8 @@
     $pass = $_POST['pass'];
     $admin = 2;
 
-  } 
+  }
+
   if(existe($user,$pass,$admin,$conexion)){
     $_SESSION['user']= $user;
     $_SESSION['pass']= $pass;
@@ -35,7 +36,7 @@
   <script type="text/javascript" src ="funtions.js"></script>
   <script type="text/javascript" src ="jquery-2.2.0.min.js"></script>
 </head>
-<body onload= "reloj()">
+<body onload= "reloj(); leerUsuarios();">
   <div >
    <nav id ="navigate" >
      <div class="flex-item colorWhite">Escritorio de ubuntu</div>
@@ -44,7 +45,7 @@
       <i class="fa fa-battery-full inlineblock colorWhite"></i>
       <div class="flex-item text-center text-right colorWhite inlineblock" id = "hora" > 
       </div>
-      <i class="fa fa-power-off colorWhite" style = "cursor:pointer;"onclick="datos1()"></i>
+      <i class="fa fa-power-off colorWhite" style = "cursor:pointer;"onclick="datos1()" id="apagar"></i>
     </div>
   </nav>
    
@@ -52,6 +53,9 @@
    <div id= "datos" style="display:none;"> 
      <ul style="padding-top:2%; list-style: none;" class="colorWhite">
       <li class="text-center" style = "cursor:pointer;" onclick="datos2()">Acerca de este equipo</li>
+      <li class="text-center" style = "cursor:pointer;" >
+       <form method="post"><input type="submit" value="Cerrar Sesión" name="cerrar" style="background-color: transparent; border-style: none; font-family: 'Poiret One', cursive; color: white; font-size: 18px; cursor:pointer;"></input> </form></li>
+       <li class="text-center" style = "cursor:pointer;" onclick="datos2()">Acerca de este equipo</li>
      </ul>
    </div>
 
@@ -78,8 +82,13 @@
     <input type="image" src="chrome.png" alt="Submit" class="btn">
     <input type="image" src="libreoffice.png" alt="Submit" class="btn">
     <input type="image" src="calc.png" alt="Submit" class="btn">
-    <input type="image" src="editor.png" alt="Submit" class="btn" onclick="notesApp();">
+  <?php if($admin == 2) { ?>
+    <input type="image" src="editor.png" alt="Submit" class="btn" onclick="notesApp()">
     <input type="image" src="calculator.png" alt="Submit" class="btn" onclick='abrir()'>
+  <?php }else{
+    ?>
+    <input type="image" src="addUser.png" alt="Submit" class="btn" onclick="usuariosApp()">
+    <?php  } ?>
   </nav>
   <input type="image" src="papelera.png" alt="Submit" class="btn">
   
@@ -116,7 +125,7 @@
      </div>
      </div>
 
-        <div id= "andres" style="display:none;"> 
+        <div id= "datitos" style="display:none;"> 
          <div class="absol" style="height: 7%; width:100%; background-color: #3C3C3C;">
          <div class="circle3" style="" onclick='closedatos()'><p style="left:.7%; position:absolute; top:-2%;">x</p>
          </div>
@@ -164,6 +173,38 @@
 
 
 
+      <div id= "usuarios" style="display:none"> 
+         <div class="absol" style="height: 3.8%; width:100%; background-color: #3C3C3C;">
+         <div class="circle3" style="" onclick='usuariosAppclose()'><p style="left:.7%; position:absolute; top:-2%;">x</p>
+         </div>
+         </div>
+         <div style="width=100%; height:17%; background-color: #373737;">
+           <input type="image" src="new.png" alt="Submit" style="width: 7%; height: 8%; position: absolute; left: 5%;top:6%;"
+            onclick="">
+           <input type="image" src="editUsser.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:15%;top:6%;"  onclick=""> <p style=" position: absolute; left:23%;top:9%;" class="colorWhite">Abrir</p>
+           <input type="image" src="save.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:30%;top:6%;" onclick=""> 
+           <p style=" position: absolute; left:38%;top:9%;" class="colorWhite">Guardar</p>
+           <input type="image" src="remove.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:50%;top:6%;" onclick=""> 
+         </div>
+         <div style="width=100%; height:85%;background-color: #D6D6D6;">
+          <div id = "divUsers"style="position:absolute; width: 65%; height:75%; background-color:white; top:20%; left: 30%;">
+           
+         </div>
+         <div id = ""style=" display:none;position:absolute; width: 65%; height:75%; background-color:green; top:20%; left: 30%;">
+         </div>
+
+         <div style="position:absolute; width: 25%; height:75%; background-color:white; top:20%; left: 2%;">
+           <ul id ='listUsers' style="padding-top:2%; list-style: none;" class="">
+            
+           </ul>
+         </div>
+         </div>
+       </div>
+
+
+
+
+
 
     </div>
   
@@ -187,8 +228,14 @@
     <input type="image" src="chrome.png" alt="Submit" class="btnApps">
     <input type="image" src="libreoffice.png" alt="Submit" class="btnApps">
     <input type="image" src="calc.png" alt="Submit" class="btnApps">
+  <?php if($admin == 2) { ?>
     <input type="image" src="editor.png" alt="Submit" class="btnApps"onclick="notesApp();">
     <input type="image" src="calculator.png" alt="Submit" class="btnApps">
+    <?php
+  }else{
+  ?>
+    <input type="image" src="addUser.png" alt="Submit" class="btnApps">
+  <?php  } ?>
 
  
   </div>
@@ -201,9 +248,15 @@
 </html>
 
 <?php
+
  }else{
    echo "<script> alert('usuario o contraseña NO Valido(a)') </script>";
     echo '<script>window.location = "login.php"</script>';
+  }
+
+   if(isset($_POST['cerrar'])){
+    session_destroy();
+     echo '<script>window.location = "login.php"</script>';
   }
 
  ?>
