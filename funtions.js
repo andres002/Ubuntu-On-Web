@@ -125,10 +125,23 @@ var count = 0;
 
 function guardarnota(){
 	var txNotas  = document.getElementById('txNotas').value;
-	if(txNotas != ""){
-		document.getElementById("listNotas").innerHTML = document.getElementById('listNotas').innerHTML+"<li id = 'nota"+ count+"'"+" type='none' onclick='opennote(this.id)' style = 'cursor:pointer; background-color:#FF6E2B;'>"+txNotas+"</li";
-		document.getElementById("txNotas").value="";
-		count++;
+	var txNotasname  = document.getElementById('txNotas').name;
+	if(txNotas.trim() != ""){
+
+
+		alert("si esta pasando");
+	$.ajax({
+		url: 'funcionesdeUsuario.php',
+		data: {accion:'guardarNota',nota:txNotas,id:txNotasname},
+		type: 'POST',
+		datatype:"html",
+		success: function(data) {
+			//$('#divUsersAnadir').append(data);
+			alert(data);
+		}
+	}).done(function() {
+  		$("#listNotas").load('cargarNotas.php');
+		});
 	}
 
 }
@@ -136,7 +149,8 @@ function guardarnota(){
 /*function guardarUsuario(){
 	var txNotas  = document.getElementById('txNotas').value;
 	if(txNotas != ""){
-		document.getElementById("listNotas").innerHTML = document.getElementById('listNotas').innerHTML+"<li id = 'nota"+ count+"'"+" type='none' onclick='opennote(this.id)' style = 'cursor:pointer; background-color:#FF6E2B;'>"+txNotas+"</li";
+		document.getElementById("listNotas").innerHTML = document.getElementById('listNotas').innerHTML+"<li id = 'nota"+ count+"'"+" type='none' onclick='
+		(this.id)' style = 'cursor:pointer; background-color:#FF6E2B;'>"+txNotas+"</li";
 		document.getElementById("txNotas").value="";
 		count++;
 	}
@@ -175,7 +189,9 @@ function actualizarUser(){
 		success: function(data) {
 			$('#divUsersEditar').html(data);
 		}
-	});
+	}).done(function() {
+  		$("#listUsers").load('cargaUsuarios.php');
+		});
 }
 
 function divAnadirUser(){
@@ -269,28 +285,35 @@ function verificaCorreo(variable){
     
 
 function opennote(id){
+
 	document.getElementById("txNotas").value = document.getElementById(id).innerHTML;
+	document.getElementById("txNotas").name = id;
 }
 
-function newnote(id){
-	//guardarnota();
+function newnote(){
+	document.getElementById("txNotas").name = "";
 	document.getElementById("txNotas").value = "";
 }
 
 
 function deletenote(){
-	var notita = document.getElementById("txNotas").value;
-   var notitas = document.getElementById("listNotas").value;
-   var lista_notas = document.getElementsByTagName("li");
+	var id = document.getElementById("txNotas").name;
 
+  $.ajax({
+		url: 'funcionesdeUsuario.php',
+		data: {accion:'deleteNota', id2:id},
+		type: 'POST',
+		datatype:"html",
+		success: function(data) {
+			//alert(contenido);
+			//$('#divUsers').append(data);
+		}
+	}).done(function() {
+  		$("#listNotas").load('cargarNotas.php');
+		});
 
-   for(var i = 0; i<lista_notas.length;i++){
-
-      if (lista_notas[i].innerHTML == notita) {
-         lista_notas[i].parentNode.removeChild(lista_notas[i]);
-      };
-   }
    document.getElementById("txNotas").value = "";
+   document.getElementById("txNotas").name="";
 }
 
 

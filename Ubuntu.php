@@ -137,7 +137,7 @@
          <div style="width=100%; height:80%;background-color: #D6D6D6;">
          <input type="image" src="ubun.png" alt="Submit" class="btn2">
          <input type="image" src="upchiapas.png" alt="Submit" style="width: 10%; height: 20%; position: absolute; left: 80%;top:30%;" >
-         <p style="position: absolute; left: 30%;top:50%; text-align:center" >  Universidad Politécnica de Chiapas <br>Programación Web<br>Ingeniería en Desarrollo de Software<br>Simulación de SO Corte 1<br>Profesor: Dr. Juan Carlos López Pimentel<br>Alumno Andrés Aguilar Cruz 143385<br>Entrega 05/02/2016 </p>
+         <p style="position: absolute; left: 30%;top:50%; text-align:center" >  Universidad Politécnica de Chiapas <br>Programación Web<br>Ingeniería en Desarrollo de Software<br>Simulación de SO Corte 2<br>Profesor: Dr. Juan Carlos López Pimentel<br>Alumno Andrés Aguilar Cruz 143385<br>Entrega 11/03/2016 </p>
          <div style="position:absolute; width: 25%; height:65%; background-color:white; top:27%; left: 2%;">
            <ul style="padding-top:2%; list-style: none;" class="">
             <li  style = "cursor:pointer; background-color:#FF6E2B ;" onclick="">Resumen</li>
@@ -158,9 +158,10 @@
            <input type="image" src="save.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:30%;top:6%;" onclick="guardarnota()"> 
            <p style=" position: absolute; left:38%;top:9%;" class="colorWhite">Guardar</p>
            <input type="image" src="remove.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:50%;top:6%;" onclick="deletenote()"> 
+           <input type="text" id = "nombrecito" style="width: 25%; height: 3%; position: absolute; left:60%;top:6.5%;" > </input>
          </div>
          <div style="width=100%; height:85%;background-color: #D6D6D6;">
-         <textarea id = 'txNotas'; style="position:absolute; width: 65%; height:75%; background-color:white; top:20%; left: 30%;"></textarea>
+         <textarea id = 'txNotas' style="position:absolute; width: 65%; height:75%; background-color:white; top:20%; left: 30%;"></textarea>
 
          <div style="position:absolute; width: 25%; height:75%; background-color:white; top:20%; left: 2%;">
            <ul id ='listNotas' style="padding-top:2%; list-style: none;" class="">
@@ -181,7 +182,7 @@
          <div style="width=100%; height:17%; background-color: #373737;">
            <input type="image" src="addUser.png" alt="Submit" style="width: 7%; height: 8%; position: absolute; left: 5%;top:6%;"
             onclick="divAnadirUser()">
-           <input type="image" src="editUsser.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:15%;top:6%;"  onclick="divEditar();"> <p style=" position: absolute; left:23%;top:9%;" class="colorWhite">Abrir</p>
+           <input type="image" src="editUsser.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:15%;top:6%;"  onclick="divEditar();"> <p style=" position: absolute; left:23%;top:9%;" class="colorWhite">editar</p>
            <input id = "saveIcon" type="image" src="save.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:30%;top:6%;" onclick="actualizarUser()"> 
            <input id = "saveIcon2" type="image" src="save.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:30%;top:6%;" onclick="anadirUser()"> 
            <p style=" position: absolute; left:38%;top:9%;" class="colorWhite">Guardar</p>

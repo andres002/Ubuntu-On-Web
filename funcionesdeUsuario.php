@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 include "conexion.php";
  if(isset($_POST['accion'])){
     switch ($_POST['accion']) {
@@ -21,6 +21,13 @@ include "conexion.php";
 
       case 'deleteUser':
         deleteUser();
+        break;
+      case 'guardarNota':
+        guardarNota();
+      break;
+
+      case 'deleteNota':
+        deleteNota();
         break;
       
       default:
@@ -138,9 +145,39 @@ function deleteUser(){
   }else{
     echo "<script>alert('No se pudo eliminar')</script>";
   }
-  
-  
+}
 
+function guardarNota(){
+  $nota = $_POST['nota'];
+  $idnota = $_POST['id'];
+
+  $conexion = conexion('localhost', 'root', '', 'sistema_operativo');
+  $comando = "UPDATE notas SET nota='$nota' WHERE idnota ='$idnota'";
+  if($idnota ==""){
+      $comando = "INSERT INTO notas (nota, user) VALUES ('$nota','".$_SESSION['user']."')";
+  }
+  echo "<script>alert('".$comando."')</script>";
+  $resultado = mysqli_query($conexion,$comando); 
+
+  if($resultado){
+    //echo "$fila['nota']";
+  }else{
+    echo "<script>alert('No se pudo guardar')</script>";
+  }
+}
+
+function deleteNota(){
+  $idnota = $_POST['id2'];
+   $conexion = conexion('localhost', 'root', '', 'sistema_operativo');
+ echo "<script>alert('llega a aqui')</script>";
+  $comando = "DELETE FROM notas WHERE idnota='$idnota';";
+
+  $resultado = mysqli_query($conexion,$comando);
+  if($resultado){
+    echo "<script>alert('eliminado correctamente')</script>";
+  }else{
+    echo "<script>alert('No se pudo eliminar')</script>";
+  }
 }
 
 
