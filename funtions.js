@@ -27,6 +27,7 @@ function openUser($user) {
 	$("#saveIcon").attr("disabled","");
 	$("#divUsers").fadeIn(400);
 	$("#divUsersEditar").fadeOut(200);
+	$('#divUsersAnadir').fadeOut(200);
 	$.ajax({
 		url: 'funcionesdeUsuario.php',
 		data: {accion:'openUser',usuario:$user},
@@ -50,6 +51,7 @@ function divEditar(){
 	//document.getElementById('divUsers').style.display="none";
 	$("#divUsersEditar").fadeIn(400);
 	$("#divUsers").fadeOut(200);
+	$('#divUsersAnadir').fadeOut(200);
 	$.ajax({
 		url: 'funcionesdeUsuario.php',
 		data: {accion:'editar',usuario:$user},
@@ -169,21 +171,17 @@ function actualizarUser(){
 			$('#divUsersEditar').html(data);
 		}
 	});
+}
 
-
-
-
-	/*
-	var tipo = $('#inputTipo').val();
-	var user = $('#inputUser').val();
-	var nombre = $('#inputNombre').val();
-	var telefono = $('#inputTelefono').val();
-	var correo = $('#inputCorreo').val();
-	var facebook = $('#inputFacebook').val();
-	var password = $('#inputPassword').val();*/
-
+function anadirUser(){
+	$('#divUsersAnadir').fadeIn(400);
+	$("#divUsersEditar").fadeOut(200);
+	$("#divUsers").fadeOut(200);
 
 }
+
+
+
 
 function isnull(variable){
 	if(variable.trim() === "" || variable.trim() === null){

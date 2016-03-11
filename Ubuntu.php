@@ -180,7 +180,7 @@
          </div>
          <div style="width=100%; height:17%; background-color: #373737;">
            <input type="image" src="addUser.png" alt="Submit" style="width: 7%; height: 8%; position: absolute; left: 5%;top:6%;"
-            onclick="">
+            onclick="anadirUser()">
            <input type="image" src="editUsser.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:15%;top:6%;"  onclick="divEditar();"> <p style=" position: absolute; left:23%;top:9%;" class="colorWhite">Abrir</p>
            <input id = "saveIcon" type="image" src="save.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:30%;top:6%;" onclick="actualizarUser()"> 
            <p style=" position: absolute; left:38%;top:9%;" class="colorWhite">Guardar</p>
@@ -192,6 +192,26 @@
          </div>
          <div id = "divUsersEditar"style=" display:none;position:absolute; width: 65%; height:75%; top:20%; left: 30%;">
            
+            
+         </div>
+         <div id = "divUsersAnadir" style="display: none; position:absolute; width: 65%; height:75%; top:20%; left: 30%;">
+            <form>
+      <p style='text-align: center'>
+              <select id = 'inputTipo'>
+                <option value='2'>Usuario</option>
+                <option value='1'>Administrador</option>
+              </select>
+              </p>
+            <p style='position: relative;'>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:20%'>Usuario:</p> <input type='text' id = 'inputUser'  style='position: absolute; left:40%; top:20%' required></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:30%'>Nombre:</p> <input id = 'inputNombre' type='text' style='position: absolute; left:40%; top:30%' required></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:40%;'>telefono:</p> <input id = 'inputTelefono' type='number' style='position: absolute; left:40%; top:40%;' required></p>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:50%;'>correo:</p> <input type='email' id = 'inputCorreo' style='position: absolute; left:40%; top:50%;' required></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:60%'>Facebook:</p> <input id = 'inputFacebook' style='position: absolute; left:40%; top:60%' required></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:70%'>Contraseña:</p> <input id = 'inputPassword' style='position: absolute; left:40%; top:70%' required></input>
+              
+            </p>
+            </form>
             
          </div>
 
