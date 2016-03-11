@@ -148,7 +148,69 @@ function guardarUsuario(){
 }
 
 function actualizarUser(){
-	
+	var tipos = [];
+	tipos[0] = $('#inputTipo').val();
+	tipos[1] = $('#inputUser').val();
+	tipos[2] = $('#inputNombre').val();
+	tipos[3] = $('#inputTelefono').val();
+	tipos[4] = $('#inputCorreo').val();
+	tipos[5] = $('#inputFacebook').val();
+	tipos[6] = $('#inputPassword').val();
+
+	for (var i = 0; i < tipos.length; i++) {
+		if(isnull(tipos[i])){
+			alert("Uno o mas campos están vacios, por favor rellenelos");
+			return;
+		}
+	}
+
+	if(!verificaCorreo(tipos[4])){
+		alert("por favor ingrese un correo valido");
+			return;
+	}
+
+	$.ajax({
+		url: 'funcionesdeUsuario.php',
+		data: {accion:'editar',usuario:$user},
+		type: 'POST',
+		datatype:"html",
+		success: function(data) {
+			$('#divUsersEditar').html(data);
+		}
+	});
+
+
+
+
+	/*
+	var tipo = $('#inputTipo').val();
+	var user = $('#inputUser').val();
+	var nombre = $('#inputNombre').val();
+	var telefono = $('#inputTelefono').val();
+	var correo = $('#inputCorreo').val();
+	var facebook = $('#inputFacebook').val();
+	var password = $('#inputPassword').val();*/
+
+
+}
+
+function isnull(variable){
+	if(variable.trim() === "" || variable.trim() === null){
+		return true;
+	}
+	return false;
+}
+
+function verificaCorreo(variable){
+	var res = variable.split("@");
+	if(res.length != 2){
+		return false
+	}
+	var res2 = res[1].split(".");
+	if(res2.length != 2){
+		return false;
+	}
+	return true;
 }
 
 

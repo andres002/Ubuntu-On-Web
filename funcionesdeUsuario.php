@@ -10,6 +10,10 @@ include "conexion.php";
       case 'editar':
         editUser();
         break;
+
+      case 'guardaEdicion':
+        actualizar();
+        break;
       
       default:
         break;
@@ -47,26 +51,33 @@ function editUser(){
 	$resultado = mysqli_query($conexion,$comando);
 	$fila = mysqli_fetch_array($resultado);
 	if($fila['admin'] == 1) {
-		$tipo =  "<option value='volvo'>Administrador</option>
-                <option value='saab'>Usurio</option>";
+		$tipo =  "<option value='1'>Administrador</option>
+                <option value='2'>Usurio</option>";
 	}else{
-		$tipo =  "<option value='volvo'>Usuario</option>
-                <option value='saab'>Administrador</option>";
+		$tipo =  "<option value='2'>Usuario</option>
+                <option value='1'>Administrador</option>";
 	}
-	echo " <p style='text-align: center'>
+	echo " <form>
+			<p style='text-align: center'>
               <select id = 'inputTipo'>".
                 $tipo
               ."</select>
               </p>
             <p style='position: relative;'>
-              <p class='inline-Block' style='position: absolute; left: 10%; top:20%'>Usuario:</p> <input type='text' id = 'inputUser'  style='position: absolute; left:40%; top:20%' value = '".$fila['user']."'></input>
-              <p type='text' class='inline-Block' style='position: absolute; left: 10%; top:30%'>Nombre:</p> <input id = 'inputNombre' type='text' style='position: absolute; left:40%; top:30%' value = '".$fila['nombre']."'></input>
-              <p type='text' class='inline-Block' style='position: absolute; left: 10%; top:40%;'>telefono:</p> <input type='text' style='position: absolute; left:40%; top:40%;' value = '".$fila['telefono']."'></p>
-              <p class='inline-Block' style='position: absolute; left: 10%; top:50%;'>correo:</p> <input style='position: absolute; left:40%; top:50%;' value = '".$fila['correo']."'></input>
-              <p class='inline-Block' style='position: absolute; left: 10%; top:60%'>Facebook:</p> <input style='position: absolute; left:40%; top:60%' value = '".$fila['facebook']."'></input>
-              <p class='inline-Block' style='position: absolute; left: 10%; top:70%'>Contraseña:</p> <input style='position: absolute; left:40%; top:70%' value = '".$fila['password']."'></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:20%'>Usuario:</p> <input type='text' id = 'inputUser'  style='position: absolute; left:40%; top:20%' value = '".$fila['user']."' required></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:30%'>Nombre:</p> <input id = 'inputNombre' type='text' style='position: absolute; left:40%; top:30%' value = '".$fila['nombre']."' required></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:40%;'>telefono:</p> <input id = 'inputTelefono' type='number' style='position: absolute; left:40%; top:40%;' value = '".$fila['telefono']."' required></p>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:50%;'>correo:</p> <input type='email' id = 'inputCorreo' style='position: absolute; left:40%; top:50%;' value = '".$fila['correo']."' required></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:60%'>Facebook:</p> <input id = 'inputFacebook' style='position: absolute; left:40%; top:60%' value = '".$fila['facebook']."' required></input>
+              <p class='inline-Block' style='position: absolute; left: 10%; top:70%'>Contraseña:</p> <input id = 'inputPassword' style='position: absolute; left:40%; top:70%' value = '".$fila['password']."'  required></input>
               
-            </p>";
+            </p>
+            </form>";
+
+}
+
+function actualizar (){
+	
 }
 
 
