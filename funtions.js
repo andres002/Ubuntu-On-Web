@@ -18,10 +18,13 @@ function reloj(){
 
 
 function leerUsuarios(){
+	alert("entra");
 	$("#listUsers").load('cargaUsuarios.php');
+	$("#listNotas").load('cargarNotas.php');
 	$("#saveIcon").attr("disabled","");
 	$("#saveIcon2").hide();
 }
+
 
 
 function openUser($user) {
@@ -130,7 +133,7 @@ function guardarnota(){
 
 }
 
-function guardarUsuario(){
+/*function guardarUsuario(){
 	var txNotas  = document.getElementById('txNotas').value;
 	if(txNotas != ""){
 		document.getElementById("listNotas").innerHTML = document.getElementById('listNotas').innerHTML+"<li id = 'nota"+ count+"'"+" type='none' onclick='opennote(this.id)' style = 'cursor:pointer; background-color:#FF6E2B;'>"+txNotas+"</li";
@@ -138,7 +141,7 @@ function guardarUsuario(){
 		count++;
 	}
 
-}
+}*/
 
 function actualizarUser(){
 	var usuarioM = $('#subParrafo').text();
@@ -214,13 +217,29 @@ function anadirUser(){
 		success: function(data) {
 			$('#divUsersAnadir').append(data);
 		}
-	});
+	}).done(function() {
+  		$("#listUsers").load('cargaUsuarios.php');
+		});
 
-	$("#listUsers").load('cargaUsuarios.php');
+	
 }
 
 
 function removeDiv() {
+	var user = $('#subParrafo').text();
+	$.ajax({
+		url: 'funcionesdeUsuario.php',
+		data: {accion:'deleteUser', user:user},
+		type: 'POST',
+		datatype:"html",
+		success: function(data) {
+			//alert(contenido);
+			$('#divUsers').append(data);
+		}
+	}).done(function() {
+  		$("#listUsers").load('cargaUsuarios.php');
+		});
+
 	
 }
 

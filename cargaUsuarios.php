@@ -11,12 +11,13 @@ if($_SESSION['admin'] == 1){
 	$result = mysqli_query($conexion,$comando);
 
 	$numrows = mysqli_num_rows($result);
-	echo "<script>alert($numrows)</script>";
+	//echo "<script>alert($numrows)</script>";
 
 	for ($i=0; $i < $numrows ; $i++) { 
 		$fila = mysqli_fetch_array($result);
 		echo "<li id = '".$fila['user']."' type='none' onclick='openUser(this.id)' style = 'cursor:pointer; '>".$fila['user']." </li>";
 	}
 }
+
 
 ?>

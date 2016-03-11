@@ -18,6 +18,10 @@ include "conexion.php";
       case 'nuevo':
         nuevo();
         break;
+
+      case 'deleteUser':
+        deleteUser();
+        break;
       
       default:
         break;
@@ -117,6 +121,22 @@ function nuevo(){
     echo "<script>alert('Añadido correctamente')</script>";
   }else{
     echo "<script>alert('No se pudo añadir')</script>";
+  }
+
+}
+
+
+function deleteUser(){
+  $user = $_POST['user'];
+  $conexion = conexion('localhost', 'root', '', 'sistema_operativo');
+ echo "<script>alert('llega a aqui')</script>";
+  $comando = "DELETE FROM login WHERE user='$user';";
+
+  $resultado = mysqli_query($conexion,$comando);
+  if($resultado){
+    echo "<script>alert('eliminado correctamente')</script>";
+  }else{
+    echo "<script>alert('No se pudo eliminar')</script>";
   }
   
   
