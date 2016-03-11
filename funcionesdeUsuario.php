@@ -77,6 +77,23 @@ function editUser(){
 }
 
 function actualizar (){
+  $usuario = $_POST['usuarioconsulta'];
+  $user = $_POST['user'];
+  $password = $_POST['password'];
+  $nombre = $_POST['nombre'];
+  $admin = $_POST['admin'];
+  $telefono = $_POST['telefono'];
+  $correo = $_POST['correo'];
+  $facebook = $_POST['facebook'];
+   
+     echo "<script>alert(".$user.")</script>";
+
+  $conexion = conexion('localhost', 'root', '', 'sistema_operativo');
+  $comando = "UPDATE login SET user='$user', password='$password', nombre='$nombre', admin='$admin', telefono ='$telefono', correo='$correo', facebook = '$facebook' WHERE user='$usuario'";
+
+  $resultado = mysqli_query($conexion,$comando);
+  
+  echo "<script>alert(".$resultado.")</script>";
 	
 }
 

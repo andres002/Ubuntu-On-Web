@@ -179,7 +179,7 @@
          </div>
          </div>
          <div style="width=100%; height:17%; background-color: #373737;">
-           <input type="image" src="new.png" alt="Submit" style="width: 7%; height: 8%; position: absolute; left: 5%;top:6%;"
+           <input type="image" src="addUser.png" alt="Submit" style="width: 7%; height: 8%; position: absolute; left: 5%;top:6%;"
             onclick="">
            <input type="image" src="editUsser.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:15%;top:6%;"  onclick="divEditar();"> <p style=" position: absolute; left:23%;top:9%;" class="colorWhite">Abrir</p>
            <input id = "saveIcon" type="image" src="save.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:30%;top:6%;" onclick="actualizarUser()"> 

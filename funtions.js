@@ -15,6 +15,8 @@ function reloj(){
 }
 
 
+
+
 function leerUsuarios(){
 	$("#listUsers").load('cargaUsuarios.php');
 	$("#saveIcon").attr("disabled","");
@@ -22,7 +24,9 @@ function leerUsuarios(){
 
 
 function openUser($user) {
-
+	$("#saveIcon").attr("disabled","");
+	$("#divUsers").fadeIn(400);
+	$("#divUsersEditar").fadeOut(200);
 	$.ajax({
 		url: 'funcionesdeUsuario.php',
 		data: {accion:'openUser',usuario:$user},
@@ -36,9 +40,6 @@ function openUser($user) {
 }
 
 function regresaEstado($user){
-	$("#saveIcon").attr("disabled","");
-	$("#divUsers").fadeIn(400);
-	$("#divUsersEditar").fadeOut(200);
 	openUser($user);
 }
 
@@ -61,19 +62,6 @@ function divEditar(){
 
 }
 
-
-function editUsers($user) {
-	$.ajax({
-		url: 'funcionesdeUsuario.php',
-		data: {accion:'editar',usuario:$user},
-		type: 'POST',
-		datatype:"html",
-		success: function(data) {
-			//alert(contenido);
-			$('#divUsersEditar').html(data);
-		}
-	});
-}
 
 function calc (elemento) {
 	var panel = document.getElementById("panel");
@@ -148,6 +136,8 @@ function guardarUsuario(){
 }
 
 function actualizarUser(){
+
+	var usuarioM = $('#subParrafo').text();
 	var tipos = [];
 	tipos[0] = $('#inputTipo').val();
 	tipos[1] = $('#inputUser').val();
@@ -168,10 +158,11 @@ function actualizarUser(){
 		alert("por favor ingrese un correo valido");
 			return;
 	}
+	alert(usuarioM);
 
 	$.ajax({
 		url: 'funcionesdeUsuario.php',
-		data: {accion:'editar',usuario:$user},
+		data: {accion:'guardaEdicion',usuarioconsulta:usuarioM,user:tipos[1], password:tipos[6], nombre:tipos[2], admin:tipos[0], telefono:tipos[3], correo:tipos[4], facebook:tipos[5]},
 		type: 'POST',
 		datatype:"html",
 		success: function(data) {
