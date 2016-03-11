@@ -14,6 +14,10 @@ include "conexion.php";
       case 'guardaEdicion':
         actualizar();
         break;
+
+      case 'nuevo':
+        nuevo();
+        break;
       
       default:
         break;
@@ -85,9 +89,7 @@ function actualizar (){
   $telefono = $_POST['telefono'];
   $correo = $_POST['correo'];
   $facebook = $_POST['facebook'];
-   
-     echo "<script>alert(".$user.")</script>";
-
+  
   $conexion = conexion('localhost', 'root', '', 'sistema_operativo');
   $comando = "UPDATE login SET user='$user', password='$password', nombre='$nombre', admin='$admin', telefono ='$telefono', correo='$correo', facebook = '$facebook' WHERE user='$usuario'";
 
@@ -95,6 +97,30 @@ function actualizar (){
   
   echo "<script>alert(".$resultado.")</script>";
 	
+}
+
+
+function nuevo(){
+  $user = $_POST['user'];
+  $password = $_POST['password'];
+  $nombre = $_POST['nombre'];
+  $admin = $_POST['admin'];
+  $telefono = $_POST['telefono'];
+  $correo = $_POST['correo'];
+  $facebook = $_POST['facebook'];
+
+  $conexion = conexion('localhost', 'root', '', 'sistema_operativo');
+  $comando = "INSERT INTO login (user, password, nombre, admin, telefono, correo, facebook) VALUES ('$user','$password','$nombre','$admin','$telefono','$correo', '$facebook');";
+
+  $resultado = mysqli_query($conexion,$comando);
+  if($resultado){
+    echo "<script>alert('Añadido correctamente')</script>";
+  }else{
+    echo "<script>alert('No se pudo añadir')</script>";
+  }
+  
+  
+
 }
 
 

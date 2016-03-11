@@ -20,10 +20,12 @@ function reloj(){
 function leerUsuarios(){
 	$("#listUsers").load('cargaUsuarios.php');
 	$("#saveIcon").attr("disabled","");
+	$("#saveIcon2").hide();
 }
 
 
 function openUser($user) {
+	$("#saveIcon2").hide();
 	$("#saveIcon").attr("disabled","");
 	$("#divUsers").fadeIn(400);
 	$("#divUsersEditar").fadeOut(200);
@@ -46,6 +48,7 @@ function regresaEstado($user){
 
 
 function divEditar(){
+	$("#saveIcon2").hide();
 	$("#saveIcon").removeAttr("disabled","");
 	$user = $('#subParrafo').text();
 	//document.getElementById('divUsers').style.display="none";
@@ -138,7 +141,6 @@ function guardarUsuario(){
 }
 
 function actualizarUser(){
-
 	var usuarioM = $('#subParrafo').text();
 	var tipos = [];
 	tipos[0] = $('#inputTipo').val();
@@ -160,7 +162,7 @@ function actualizarUser(){
 		alert("por favor ingrese un correo valido");
 			return;
 	}
-	alert(usuarioM);
+	//alert(usuarioM);
 
 	$.ajax({
 		url: 'funcionesdeUsuario.php',
@@ -173,11 +175,53 @@ function actualizarUser(){
 	});
 }
 
-function anadirUser(){
-	$('#divUsersAnadir').fadeIn(400);
+function divAnadirUser(){
 	$("#divUsersEditar").fadeOut(200);
 	$("#divUsers").fadeOut(200);
+	$('#divUsersAnadir').fadeIn(400);
+	$("#saveIcon2").show();
+	
+}
 
+function anadirUser(){
+	var tipos = [];
+	tipos[0] = $('#inputTipo2').val();
+	tipos[1] = $('#inputUser2').val();
+	tipos[2] = $('#inputNombre2').val();
+	tipos[3] = $('#inputTelefono2').val();
+	tipos[4] = $('#inputCorreo2').val();
+	tipos[5] = $('#inputFacebook2').val();
+	tipos[6] = $('#inputPassword2').val();
+
+
+	for (var i = 0; i < tipos.length; i++) {
+		if(isnull(tipos[i])){
+			alert("Uno o mas campos están vacios, por favor rellenelos");
+			return;
+		}
+	}
+
+	if(!verificaCorreo(tipos[4])){
+		alert("por favor ingrese un correo valido");
+			return;
+	}
+
+	$.ajax({
+		url: 'funcionesdeUsuario.php',
+		data: {accion:'nuevo',user:tipos[1], password:tipos[6], nombre:tipos[2], admin:tipos[0], telefono:tipos[3], correo:tipos[4], facebook:tipos[5]},
+		type: 'POST',
+		datatype:"html",
+		success: function(data) {
+			$('#divUsersAnadir').append(data);
+		}
+	});
+
+	$("#listUsers").load('cargaUsuarios.php');
+}
+
+
+function removeDiv() {
+	
 }
 
 
