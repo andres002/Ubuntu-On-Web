@@ -17,9 +17,12 @@ function reloj(){
 
 function leerUsuarios(){
 	$("#listUsers").load('cargaUsuarios.php');
+	$("#saveIcon").attr("disabled","");
 }
 
+
 function openUser($user) {
+
 	$.ajax({
 		url: 'funcionesdeUsuario.php',
 		data: {accion:'openUser',usuario:$user},
@@ -32,7 +35,45 @@ function openUser($user) {
 	});
 }
 
+function regresaEstado($user){
+	$("#saveIcon").attr("disabled","");
+	$("#divUsers").fadeIn(400);
+	$("#divUsersEditar").fadeOut(200);
+	openUser($user);
+}
 
+
+function divEditar(){
+	$("#saveIcon").removeAttr("disabled","");
+	$user = $('#subParrafo').text();
+	//document.getElementById('divUsers').style.display="none";
+	$("#divUsersEditar").fadeIn(400);
+	$("#divUsers").fadeOut(200);
+	$.ajax({
+		url: 'funcionesdeUsuario.php',
+		data: {accion:'editar',usuario:$user},
+		type: 'POST',
+		datatype:"html",
+		success: function(data) {
+			$('#divUsersEditar').html(data);
+		}
+	});
+
+}
+
+
+function editUsers($user) {
+	$.ajax({
+		url: 'funcionesdeUsuario.php',
+		data: {accion:'editar',usuario:$user},
+		type: 'POST',
+		datatype:"html",
+		success: function(data) {
+			//alert(contenido);
+			$('#divUsersEditar').html(data);
+		}
+	});
+}
 
 function calc (elemento) {
 	var panel = document.getElementById("panel");
@@ -54,16 +95,16 @@ function calc (elemento) {
 }
 
 function closec(){
-	$('#calc').fadeOut(500);
+	$('#calc').fadeOut(300);
 }
 
 function abrir(){
-	$('#calc').fadeIn(500);
+	$('#calc').fadeIn(300);
 }
 
 function closeStart(){
-	$('#start').fadeOut(500);
-	$('#buscador').fadeOut(500);
+	$('#start').fadeOut(300);
+	$('#buscador').fadeOut(300);
 	
 	document.getElementById("navigate3").style.display="none";
 	document.getElementById("navigate").style.display="flex";
@@ -73,8 +114,8 @@ function closeStart(){
 }
 
 function abrirStart(){
-	$('#start').fadeIn(500);
-	$('#buscador').fadeIn(500);
+	$('#start').fadeIn(300);
+	$('#buscador').fadeIn(300);
 
 	document.getElementById("buscador").style.display="flex";
 	document.getElementById("navigate3").style.display="flex";
@@ -104,6 +145,10 @@ function guardarUsuario(){
 		count++;
 	}
 
+}
+
+function actualizarUser(){
+	
 }
 
 
@@ -137,42 +182,42 @@ function deletenote(){
 
 
 function notesApp(){
-	$('#notas').fadeIn(500);
+	$('#notas').fadeIn(300);
 }
 
 function notesAppclose(){
-	$('#notas').fadeOut(500);
+	$('#notas').fadeOut(300);
 }
 
 function usuariosApp(){
-	$('#usuarios').fadeIn(500);
+	$('#usuarios').fadeIn(300);
 }
 
 function usuariosAppclose(){
-	$('#usuarios').fadeOut(500);
+	$('#usuarios').fadeOut(300);
 }
 
 
 function datos1(){
-	$('#datos').fadeIn(500);
+	$('#datos').fadeIn(300);
 	 $('#apagar').dblclick(function() {
-	  $('#datos').fadeOut(500);
+	  $('#datos').fadeOut(300);
 		});
 }
 
 function datos2(){
-	$('#andres').fadeIn(500);
-	$('#datos').fadeOut(500);
+	$('#datitos').fadeIn(300);
+	$('#datos').fadeOut(300);
 }
 
 function closedatos(){
-	$('#andres').fadeOut(500);
+	$('#datitos').fadeOut(300);
 }
 
 
 
 /*$(document).ready(function{
 	$('#notas').draggable();
-	$('#andres').draggable();
+	$('#datitos').draggable();
 	$('#calc').draggable();
 });*/

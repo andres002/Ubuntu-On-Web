@@ -15,7 +15,7 @@ if($_SESSION['admin'] == 1){
 
 	for ($i=0; $i < $numrows ; $i++) { 
 		$fila = mysqli_fetch_array($result);
-		echo "<li id = '".$fila['user']."' type='none' onclick='openUser(this.id)' style = 'cursor:pointer; '>".$fila['user']." </li>";
+		echo "<li id = '".$fila['user']."' type='none'  ondblclick='regresaEstado(this.id)' onclick='openUser(this.id)' style = 'cursor:pointer; '>".$fila['user']." </li>";
 	}
 }
 

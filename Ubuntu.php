@@ -181,8 +181,8 @@
          <div style="width=100%; height:17%; background-color: #373737;">
            <input type="image" src="new.png" alt="Submit" style="width: 7%; height: 8%; position: absolute; left: 5%;top:6%;"
             onclick="">
-           <input type="image" src="editUsser.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:15%;top:6%;"  onclick=""> <p style=" position: absolute; left:23%;top:9%;" class="colorWhite">Abrir</p>
-           <input type="image" src="save.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:30%;top:6%;" onclick=""> 
+           <input type="image" src="editUsser.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:15%;top:6%;"  onclick="divEditar();"> <p style=" position: absolute; left:23%;top:9%;" class="colorWhite">Abrir</p>
+           <input id = "saveIcon" type="image" src="save.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:30%;top:6%;" onclick="actualizarUser()"> 
            <p style=" position: absolute; left:38%;top:9%;" class="colorWhite">Guardar</p>
            <input type="image" src="remove.png" alt="Submit" style="width: 7%; height: 9%; position: absolute; left:50%;top:6%;" onclick=""> 
          </div>
@@ -190,7 +190,9 @@
           <div id = "divUsers"style="position:absolute; width: 65%; height:75%; background-color:white; top:20%; left: 30%;">
            
          </div>
-         <div id = ""style=" display:none;position:absolute; width: 65%; height:75%; background-color:green; top:20%; left: 30%;">
+         <div id = "divUsersEditar"style=" display:none;position:absolute; width: 65%; height:75%; top:20%; left: 30%;">
+           
+            
          </div>
 
          <div style="position:absolute; width: 25%; height:75%; background-color:white; top:20%; left: 2%;">
